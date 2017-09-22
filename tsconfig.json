@@ -4,16 +4,21 @@
         "declaration": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "module": "system",
+        "moduleResolution": "node",
         "outDir": "./dist/",
         "noImplicitAny": true,
         "preserveConstEnums": true,
+        "target": "es5",
         "outFile": "dist/index.js",
-        "sourceMap": true
+        "sourceMap": true,
+        "lib": [
+            "es2017",
+            "dom"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ]
     },
-    "typeRoots": [
-        "node_modules/@types"
-    ],
     "include": [
         "src/**/*"
     ],
