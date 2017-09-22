@@ -11,6 +11,9 @@
         "outFile": "dist/index.js",
         "sourceMap": true
     },
+    "typeRoots": [
+        "node_modules/@types"
+    ],
     "include": [
         "src/**/*"
     ],

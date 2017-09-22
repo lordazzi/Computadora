@@ -4,7 +4,9 @@
   "description": "Página web que conversa com você quando você estiver sem amizades.",
   "main": "index.html",
   "scripts": {
-    "test": "karma start"
+    "dev": "lite-server",
+    "test": "karma start",
+    "build": "tsc --project . -pretty"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
   },
   "homepage": "https://github.com/lordazzi/computadora#readme",
   "devDependencies": {
+    "@types/jasmine": "2.6.0",
     "codelyzer": "2.0.1",
     "es6-module-loader": "0.17.11",
     "jasmine": "2.5.3",
@@ -42,8 +45,8 @@
     "karma-typescript-preprocessor": "0.3.1",
     "lite-server": "2.2.2",
     "progress": "1.1.8",
-    "systemjs": "0.19.41",
+    "systemjs": "^0.20.19",
     "tslint": "4.4.2",
-    "typescript": "2.2.1"
+    "typescript": "2.5.2"
   }
 }

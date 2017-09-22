@@ -1,6 +1,6 @@
 import { Calc } from './calc';
 
-new class Main {
+class Main {
 	public calc: Calc;
 
 	construtor() {
@@ -11,3 +11,5 @@ new class Main {
 		console.info(`Multiply 2 by 2: ${this.calc.multiply(2, 2)}`);
 	}
 }
+
+new Main();

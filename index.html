@@ -4,10 +4,12 @@
 		<title>My TypeScript App</title>
 
 		<script src="node_modules/systemjs/dist/system.js"></script>
-		<script src="node_modules/typescript/lib/typescript.js"></script>
 		<script>
 			System.config({
 				transpiler: 'typescript',
+				map: {
+					typescript: 'node_modules/typescript/lib/typescript.js'
+				},
 				packages: {
 					src: {
 						defaultExtension: 'ts'
@@ -15,7 +17,7 @@
 				}
 			});
 			System
-			  .import('src/main')
+			  .import('src/main.ts')
 			  .then(null, console.error.bind(console));
 		</script>
 	</head>

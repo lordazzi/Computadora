@@ -19,8 +19,3 @@ describe('Testing Calc class', () => {
         expect(calc.multiply(2, 2)).toBe(4);
     });
 });
-
-
-
-
-
