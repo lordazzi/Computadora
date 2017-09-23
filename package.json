@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "test": "karma start",
-    "build": "rmdir dist /S /Q & webpack & copy index.html dist"
+    "build": "rmdir dist /S /Q & webpack & copy index.html dist & copy knowledge-base.json dist"
   },
   "repository": {
     "type": "git",
