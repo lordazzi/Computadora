@@ -1,9 +1,10 @@
-import { InteractionOutput } from './interaction-output.model';
+import { IteractionInput } from './iteraction-input.model';
+import { IteractionOutput } from './iteraction-output.model';
 
 export class Iteraction {
-    input: Array<RegExp>;
+    input: IteractionInput;
 
-    output: InteractionOutput;
+    outputs: Array<IteractionOutput>;
 
     single: boolean;
 

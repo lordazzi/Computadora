@@ -1,9 +1,9 @@
 import { Iteraction } from './iteraction.model';
 
-export class InteractionOutput {
+export class IteractionOutput {
     text: string;
-    follow: Iteraction | Array<Iteraction>;
-    timeCondition: {
+    follow: Array<Iteraction>;
+    timeCondition?: {
         before: number;
         after: number;
     }
