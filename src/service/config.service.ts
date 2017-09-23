@@ -22,8 +22,8 @@ export class ConfigService {
 
     }
 
-    private readFile(): Soul {
-        const data = this.ioService.read('config.json');
+    readFile(configFile: string): Soul {
+        const data = this.ioService.read(configFile);
         return this.treatData(JSON.parse(data) as Config);
     }
 
