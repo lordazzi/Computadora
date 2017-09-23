@@ -1,16 +1,16 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "declaration": true,
+        "declaration": false,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "moduleResolution": "node",
+        "module": "commonjs",
         "outDir": "./dist/",
         "noImplicitAny": true,
         "preserveConstEnums": true,
         "target": "es5",
-        "outFile": "dist/index.js",
-        "sourceMap": true,
+        "outFile": "dist/bundle.js",
+        "sourceMap": false,
         "lib": [
             "es2017",
             "dom"

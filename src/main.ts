@@ -1,6 +1,9 @@
+import { HumanIOService } from './service/human-io.service';
 
 new class Main {
-	construtor() {
+	humanService: HumanIOService;
 
+	construtor() {
+		this.humanService = HumanIOService.getInstance();
 	}
 }
