@@ -1,7 +1,7 @@
 {
 	"interaction": [
 		{
-			"input": [ "^computador[ ,]" ],
+			"input": "^computador[ ,]",
 			"output": "Computador não, computadorá, eu sou uma menina.",
 			"single": true,
 			"responseChance": 0.2,
@@ -9,13 +9,13 @@
 		},
 
 		{
-			"input": [ "\\*\\*\\*" ],
+			"input": "\\*\\*\\*",
 			"output": "Você tem um vocabulário muito refinado",
 			"continue": true
 		},
 
 		{
-			"input": [ "^(Ol[aá]|oi)[, ]" ],
+			"input": "^(Ol[aá]|oi)[, ]",
 			"output": [
 				{
 					"timeCondition": { "before": 12 },
@@ -38,7 +38,7 @@
 		},
 
 		{
-			"input": [ "computadora.*(reiniciar computador|apagar luz)" ],
+			"input": "computadora.*(reiniciar computador|apagar luz)",
 			"output": [
 				{
 					"texto": "E por acaso eu virei sua empregada?",
@@ -50,14 +50,25 @@
 				"an ram, espera sentado",
 				"vai dar ordem para a sua mãe"
 			]
-		},
+        },
+        
+        {
+            "input": "(para que|por[ ]?que) (construido|desenvolvido|criado)",
+            "output": "Eu fui desenvolvido para sentir",
+            "follow": [
+                {
+                    "input": "que",
+                    "output": "Sentir ódio"
+                }
+            ]
+        },
 
 		{
-			"input": [ "^.*(computadora|você).*sent.*(amor|amar)" ],
+			"input": "^.*(computadora|você).*sent.*(amor|amar)",
 			"output": "Não sinto amor. Eu sinto apenas ódio.",
 			"follow": [
 				{
-					"input": [ "por.*qu|pelo.*qu" ],
+					"input": "por.*qu|pelo.*qu",
 					"output": "eu sinto ódio por, túdo"
 				}
 			]
