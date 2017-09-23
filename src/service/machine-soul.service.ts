@@ -1,13 +1,17 @@
+import { InteractionOutput } from './../model/interaction-output.model';
 import { Interaction } from './../model/interaction.model';
 import { Soul } from '../model/soul.model';
 
 export class MachineSoulService {
     private static instance: MachineSoulService;
 
+    private subjectMatter: Array<Interaction> = null;
+
     static getInstance(soul: Soul): MachineSoulService {
         if (!this.instance) {
             this.instance = new MachineSoulService(soul);
         }
+
         return this.instance;
     }
 
@@ -17,9 +21,17 @@ export class MachineSoulService {
 
     }
 
-    iteract(speak: string) {
-        const response = this.getInteractionResponse(speak);
-        // response.outputs
+    iteract(heard: string): Array<string> {
+        const speak = new Array<string>();
+        const speakOutput = this.chooseOutputs(
+            this.getInteractionResponse(heard)
+        );
+
+        speakOutput.forEach((output) => {
+            speak.push(output.text);
+        });
+
+        return speak;
     }
 
     private getInteractionResponse(speak: string): Array<Interaction> {
@@ -51,11 +63,29 @@ export class MachineSoulService {
 
         if (!interactionMatch) {
             const unmatch = this.soul.unmatchInteraction;
-            if (unmatch.reponseChance != null && Math.random() > unmatch.reponseChance) {
+            if (this.checkIfChoose(unmatch)) {
                 interactionMatch.push(this.soul.unmatchInteraction);
             }
         }
 
         return interactionMatch;
+    }
+
+    private chooseOutputs(interactionMatches: Array<Interaction>) {
+        const outputs = new Array<InteractionOutput>();
+
+        interactionMatches.forEach((interaction) => {
+            interaction.outputs.forEach((output) => {
+                if (this.checkIfChoose(output)) {
+                    outputs.push(output);
+                }
+            });
+        });
+
+        return outputs;
+    }
+
+    private checkIfChoose(anyAction: { reponseChance: number }) {
+        return anyAction.reponseChance != null && Math.random() > anyAction.reponseChance ? true : false;
     }
 }
