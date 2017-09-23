@@ -1,12 +1,10 @@
 import { InteractionOutput } from './../model/interaction-output.model';
 import { ConfigInteractionOutput } from './../model/config/config-interaction-output.model';
-import { InteractionInput } from './../model/interaction-input.model';
 import { ConfigInteraction } from './../model/config/config-interaction.model';
 import { Interaction } from './../model/interaction.model';
 import { Config } from './../model/config/config.model';
 import { Soul } from './../model/soul.model';
 import { IOServiceInterface } from './io-service.interface';
-import { InteractionInputType } from '../model/interaction-input-type.enum';
 
 export class ConfigService {
     private static instance: ConfigService;
@@ -34,7 +32,12 @@ export class ConfigService {
         soul.interaction = new Array<Interaction>();
 
         config.interaction.forEach((configIteraction: ConfigInteraction) => {
-            soul.interaction.push(this.treatInteraction(configIteraction));
+            const interaction = this.treatInteraction(configIteraction);
+            if (interaction.input) {
+                soul.interaction.push(interaction);
+            } else {
+                soul.unmatchInteractions.push(interaction);
+            }
         });
 
         return soul;
@@ -46,9 +49,7 @@ export class ConfigService {
         iteraction.continue = configIteraction.continue;
         iteraction.single = configIteraction.single;
 
-        iteraction.input = new InteractionInput();
-        iteraction.input.matches = new Array<RegExp>();
-        iteraction.input.type = InteractionInputType.MATCH;
+        iteraction.input = new Array<RegExp>();
 
         if (configIteraction.reponseChance) {
             iteraction.reponseChance = configIteraction.reponseChance;
@@ -60,26 +61,24 @@ export class ConfigService {
         return iteraction;
     }
 
-    private treatIteractionInput(configIteractionInput: string | Array<string>): InteractionInput {
-        const input = new InteractionInput();
+    private treatIteractionInput(configIteractionInput: string | Array<string>): Array<RegExp> {
+        const matches = new Array<RegExp>();
 
-        if (typeof configIteractionInput === 'string') {
-            if (configIteractionInput === 'unmatch') {
-                input.type = InteractionInputType.UNMATCH;
-            } else {
-                input.matches.push(
-                    new RegExp(configIteractionInput)
-                );
-            }
+        if (!configIteractionInput) {
+            return matches;
+        } else if (typeof configIteractionInput === 'string') {
+            matches.push(
+                new RegExp(configIteractionInput)
+            );
         } else if (configIteractionInput instanceof Array) {
             configIteractionInput.forEach((match) => {
-                input.matches.push(
+                matches.push(
                     new RegExp(match)
                 );
             });
         }
 
-        return input;
+        return matches;
     }
 
     private treatIteractionOutput(

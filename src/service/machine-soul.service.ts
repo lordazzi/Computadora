@@ -17,8 +17,9 @@ export class MachineSoulService {
     }
 
     iteract(speak: string) {
+
         this.soul.interaction.forEach((iteraction) => {
-            
+            // iteraction.input
         });
     }
 }
