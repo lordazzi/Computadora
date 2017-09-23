@@ -36,7 +36,7 @@ export class ConfigService {
             if (interaction.input) {
                 soul.interaction.push(interaction);
             } else {
-                soul.unmatchInteractions.push(interaction);
+                soul.unmatchInteraction = interaction;
             }
         });
 
