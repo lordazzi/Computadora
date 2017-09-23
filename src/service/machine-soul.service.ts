@@ -36,8 +36,15 @@ export class MachineSoulService {
 
     private getInteractionResponse(speak: string): Array<Interaction> {
         let interactionMatch = new Array<Interaction>();
+        let subjectMatter;
+        
+        if (this.subjectMatter) {
+            subjectMatter = this.soul.interaction.concat(this.subjectMatter);
+        } else {
+            subjectMatter = this.soul.interaction;
+        }
 
-        this.soul.interaction.forEach((interaction) => {
+        subjectMatter.forEach((interaction) => {
             let isMatch = false;
 
             interaction.input.forEach((rule) => {
@@ -47,7 +54,7 @@ export class MachineSoulService {
             });
 
             if (isMatch) {
-                if (interaction.reponseChance != null && Math.random() < interaction.reponseChance) {
+                if (!this.checkIfChoose(interaction)) {
                     isMatch = false;
                 }
             }
@@ -73,11 +80,15 @@ export class MachineSoulService {
 
     private chooseOutputs(interactionMatches: Array<Interaction>) {
         const outputs = new Array<InteractionOutput>();
+        this.subjectMatter = null;
 
         interactionMatches.forEach((interaction) => {
             interaction.outputs.forEach((output) => {
                 if (this.checkIfChoose(output)) {
                     outputs.push(output);
+                    if (output.follow) {
+                        this.subjectMatter = output.follow;
+                    }
                 }
             });
         });

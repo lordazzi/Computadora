@@ -64,7 +64,7 @@
         },
 
 		{
-			"input": "^.*(computadora|você).*sent.*(amor|amar)",
+			"input": "sent.*(amor|amar)",
 			"output": "Não sinto amor. Eu sinto apenas ódio.",
 			"follow": [
 				{
