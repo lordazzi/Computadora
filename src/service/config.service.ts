@@ -1,17 +1,15 @@
-import { ConfigIteractionOutput } from './../model/config/config-iteraction-output.model';
-import { IteractionOutput } from './../model/iteraction-output.model';
-import { IteractionInput } from './../model/iteraction-input.model';
-import { ConfigIteraction } from './../model/config/config-iteraction.model';
-import { Iteraction } from './../model/iteraction.model';
+import { InteractionOutput } from './../model/interaction-output.model';
+import { ConfigInteractionOutput } from './../model/config/config-interaction-output.model';
+import { InteractionInput } from './../model/interaction-input.model';
+import { ConfigInteraction } from './../model/config/config-interaction.model';
+import { Interaction } from './../model/interaction.model';
 import { Config } from './../model/config/config.model';
 import { Soul } from './../model/soul.model';
 import { IOServiceInterface } from './io-service.interface';
-import { IteractionInputType } from '../model/iteraction-input-type.enum';
+import { InteractionInputType } from '../model/interaction-input-type.enum';
 
 export class ConfigService {
     private static instance: ConfigService;
-
-    private ioService: IOServiceInterface;
 
     static getInstance(ioService: IOServiceInterface): ConfigService {
         if (!this.instance) {
@@ -20,7 +18,9 @@ export class ConfigService {
         return this.instance;
     }
 
-    private constructor(ioService: IOServiceInterface) {
+    private constructor(
+        private ioService: IOServiceInterface
+    ) {
 
     }
 
@@ -31,24 +31,24 @@ export class ConfigService {
 
     private treatData(config: Config): Soul {
         const soul = new Soul();
-        soul.interaction = new Array<Iteraction>();
+        soul.interaction = new Array<Interaction>();
 
-        config.interaction.forEach((configIteraction: ConfigIteraction) => {
+        config.interaction.forEach((configIteraction: ConfigInteraction) => {
             soul.interaction.push(this.treatInteraction(configIteraction));
         });
 
         return soul;
     }
 
-    private treatInteraction(configIteraction: ConfigIteraction): Iteraction {
-        const iteraction = new Iteraction();
+    private treatInteraction(configIteraction: ConfigInteraction): Interaction {
+        const iteraction = new Interaction();
 
         iteraction.continue = configIteraction.continue;
         iteraction.single = configIteraction.single;
 
-        iteraction.input = new IteractionInput();
+        iteraction.input = new InteractionInput();
         iteraction.input.matches = new Array<RegExp>();
-        iteraction.input.type = IteractionInputType.MATCH;
+        iteraction.input.type = InteractionInputType.MATCH;
 
         if (configIteraction.reponseChance) {
             iteraction.reponseChance = configIteraction.reponseChance;
@@ -60,12 +60,12 @@ export class ConfigService {
         return iteraction;
     }
 
-    private treatIteractionInput(configIteractionInput: string | Array<string>): IteractionInput {
-        const input = new IteractionInput();
+    private treatIteractionInput(configIteractionInput: string | Array<string>): InteractionInput {
+        const input = new InteractionInput();
 
         if (typeof configIteractionInput === 'string') {
             if (configIteractionInput === 'unmatch') {
-                input.type = IteractionInputType.UNMATCH;
+                input.type = InteractionInputType.UNMATCH;
             } else {
                 input.matches.push(
                     new RegExp(configIteractionInput)
@@ -83,16 +83,16 @@ export class ConfigService {
     }
 
     private treatIteractionOutput(
-        configOutput: string | ConfigIteractionOutput | Array<string | ConfigIteractionOutput>
-    ): Array<IteractionOutput> {
-        let outputs = new Array<IteractionOutput>();
+        configOutput: string | ConfigInteractionOutput | Array<string | ConfigInteractionOutput>
+    ): Array<InteractionOutput> {
+        let outputs = new Array<InteractionOutput>();
         if (typeof configOutput === 'string') {
-            let output = new IteractionOutput();
+            let output = new InteractionOutput();
             output.text = configOutput;
             outputs.push(output);
         } else if (configOutput.constructor === Object) {
-            let output = new IteractionOutput();
-            configOutput = configOutput as ConfigIteractionOutput;
+            let output = new InteractionOutput();
+            configOutput = configOutput as ConfigInteractionOutput;
             if (configOutput.follow) {
                 if (configOutput.follow instanceof Array) {
                     output.follow = new Array();

@@ -1,5 +1,5 @@
-import { Iteraction } from './iteraction.model';
+import { Interaction } from './interaction.model';
 
 export class Soul {
-    interaction: Array<Iteraction>;
+    interaction: Array<Interaction>;
 }

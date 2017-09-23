@@ -1,5 +1,5 @@
-import { ConfigIteraction } from './config-iteraction.model';
+import { ConfigInteraction } from './config-interaction.model';
 
 export class Config {
-    interaction: Array<ConfigIteraction>;
+    interaction: Array<ConfigInteraction>;
 }
