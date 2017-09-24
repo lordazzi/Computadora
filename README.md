@@ -28,5 +28,5 @@ Você quer adicionar frases, testes unitários ou corrigir problemas no código?
 4. Dê push em seus commits (git push origin sua-branch)
 5. Crie um Pull Request de seu fork para o meu projeto :)
 
-#Licensa
+## Licença
 MIT.
