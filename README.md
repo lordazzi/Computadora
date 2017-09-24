@@ -12,8 +12,10 @@ As configurações podem ser editadas em knowledge-base.json.
 ##Intalação
 Depois de baixar o conteúdo usando ```git clone https://github.com/lordazzi/computadora```, você deve executar o comando ```npm install``` dentro da pasta do projeto.
 Para gerar a build, execute ```npm run build``` dentro da pasta do projeto.
+Será gerado um conteúdo dentro da pasta /dist, este conteúdo deve ser jogado dentro de um servidor de páginas, um apache por exemplo.
 Certifique-se que você tem o node, git e webpack instalado em seu computador.
 Para instalar o webpack utilize ```npm install -g webpack```
+
 
 #Compatibilidade
 Somente com as versões mais atuais do Chrome.
