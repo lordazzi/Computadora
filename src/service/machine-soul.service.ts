@@ -21,7 +21,7 @@ export class MachineSoulService {
 
     }
 
-    iteract(heard: string): Array<string> {
+    interact(heard: string): Array<string> {
         const speak = new Array<string>();
         const speakOutput = this.chooseOutputs(
             this.getInteractionResponse(heard)

@@ -22,7 +22,7 @@ new class Main {
 		this.humanService.listen((voiceHeard) => {
 			console.info(`Escutou: ${voiceHeard}`);
 			this.machineSoulService
-				.iteract(voiceHeard)
+				.interact(voiceHeard)
 				.forEach((response) => {
 					console.info(`Falou: ${response}`);
 					this.humanService.speak(response);
