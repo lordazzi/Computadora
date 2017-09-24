@@ -1,4 +1,4 @@
-declare class WebkitSpeechRecognition extends SpeechRecognition { }
+declare class webkitSpeechRecognition extends SpeechRecognition { }
 
 /**
  * Execute IO operation with humans, listening and speaking
@@ -8,17 +8,17 @@ export class HumanIOService {
 
     private listening: (speach: string) => void = null;
 
-    private speechRegocnize: SpeechRecognition | WebkitSpeechRecognition = null;
+    private speechRegocnize: SpeechRecognition | webkitSpeechRecognition = null;
 
     static getInstance(): HumanIOService {
         return this.instance;
     }
 
     private constructor() {
-        if (SpeechRecognition) {
+        if (typeof webkitSpeechRecognition !== 'undefined') {
+            this.speechRegocnize = new webkitSpeechRecognition();
+        } else if (typeof SpeechRecognition !== 'undefined') {
             this.speechRegocnize = new SpeechRecognition();
-        } else if (WebkitSpeechRecognition) {
-            this.speechRegocnize = new WebkitSpeechRecognition();
         } else {
             throw new Error('Reconhecimento de voz não é suportado em seu browser.');
         }
@@ -46,6 +46,7 @@ export class HumanIOService {
 
     listen(listening: (speach: string) => void) {
         this.listening = listening;
+        this.speechRegocnize.start();
     }
 
     speak(text: string) {

@@ -53,11 +53,11 @@ export class MachineSoulService {
                 }
             });
 
-            if (isMatch) {
-                if (!this.checkIfChoose(interaction)) {
-                    isMatch = false;
-                }
-            }
+            // if (isMatch) { a lógica está errada aqui
+            //     if (!this.checkIfChoose(interaction)) {
+            //         isMatch = false;
+            //     }
+            // }
 
             if (isMatch) {
                 interactionMatch.push(interaction);
@@ -97,6 +97,10 @@ export class MachineSoulService {
     }
 
     private checkIfChoose(anyAction: { reponseChance: number }) {
-        return anyAction.reponseChance != null && Math.random() > anyAction.reponseChance ? true : false;
+        if (anyAction.reponseChance == null) {
+            return true;
+        }
+
+        return Math.random() > anyAction.reponseChance ? true : false;
     }
 }

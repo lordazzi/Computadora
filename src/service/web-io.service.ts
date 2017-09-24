@@ -14,7 +14,7 @@ export class WebIOService implements IOServiceInterface {
 
     read(file: string): string {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', file, false);
+        xhr.open('GET', file+'?_='+(new Date).getTime(), false);
         xhr.send(null);
         return xhr.responseText;
     }

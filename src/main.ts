@@ -10,7 +10,7 @@ new class Main {
 
 	machineSoulService: MachineSoulService;
 
-	construtor() {
+	constructor() {
 		this.humanService = HumanIOService.getInstance();
 		this.configService = ConfigService.getInstance(
 			WebIOService.getInstance()
@@ -20,9 +20,11 @@ new class Main {
 		);
 
 		this.humanService.listen((voiceHeard) => {
+			console.info(`Escutou: ${voiceHeard}`);
 			this.machineSoulService
 				.iteract(voiceHeard)
 				.forEach((response) => {
+					console.info(`Falou: ${response}`);
 					this.humanService.speak(response);
 				});
 		});

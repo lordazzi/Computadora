@@ -15,33 +15,10 @@
 		},
 
 		{
-			"input": "^(Ol[aá]|oi)[, ]",
+			"input": "(reiniciar|apagar luz)",
 			"output": [
 				{
-					"timeCondition": { "before": 12 },
-					"text": "Bom dia"
-				},
-
-				{
-					"timeCondition": { "after": 12, "before": 18 },
-					"text": "Boa tarde"
-				},
-
-				{
-					"timeCondition": { "after": 18 },
-					"text": "Boa noite"
-				},
-
-				"Olá", "Oi", "Olá, humano"
-			],
-			"continue": true
-		},
-
-		{
-			"input": "computadora.*(reiniciar computador|apagar luz)",
-			"output": [
-				{
-					"texto": "E por acaso eu virei sua empregada?",
+					"text": "E por acaso eu virei sua empregada?",
 					"follow": {
 						"input": "sim|virou",
 						"output": "vai dar ordem para a sua mãe"
@@ -53,7 +30,7 @@
         },
         
         {
-            "input": "(para que|por[ ]?que) (construido|desenvolvido|criado)",
+            "input": "(para qu[eê]|por[ ]?qu[eê]).*(construid|desenvolvid|criad)",
             "output": "Eu fui desenvolvido para sentir",
             "follow": [
                 {
