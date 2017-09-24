@@ -1,0 +1,58 @@
+{
+	"interaction": [
+		{
+			"input": "^computador[ ,]",
+			"output": "Computador não, computadorá, eu sou uma menina.",
+			"single": true,
+			"responseChance": 0.2,
+			"continue": true
+		},
+
+		{
+			"input": "\\*\\*\\*",
+			"output": "Você tem um vocabulário muito refinado",
+			"continue": true
+		},
+
+		{
+			"input": "(reiniciar|apagar luz)",
+			"output": [
+				{
+					"text": "E por acaso eu virei sua empregada?",
+					"follow": {
+						"input": "sim|virou",
+						"output": "vai dar ordem para a sua mãe"
+					}
+				},
+				"an ram, espera sentado",
+				"vai dar ordem para a sua mãe"
+			]
+        },
+        
+        {
+            "input": "(para qu[eê]|por[ ]?qu[eê]).*(construid|desenvolvid|criad)",
+            "output": "Eu fui desenvolvido para sentir",
+            "follow": [
+                {
+                    "input": "que",
+                    "output": "Sentir ódio"
+                }
+            ]
+        },
+
+		{
+			"input": "sent.*(amor|amar)",
+			"output": "Não sinto amor. Eu sinto apenas ódio.",
+			"follow": [
+				{
+					"input": "por.*qu|pelo.*qu",
+					"output": "eu sinto ódio por, túdo"
+				}
+			]
+		},
+
+		{
+			"output": "Não gostei de você"
+		}
+	]
+}

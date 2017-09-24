@@ -1,0 +1,61 @@
+{
+  "name": "computadora",
+  "version": "1.0.0",
+  "description": "Página web que conversa com você quando você estiver sem amizades.",
+  "main": "index.html",
+  "scripts": {
+    "test": "karma start",
+    "build": "rmdir dist /S /Q & webpack & copy index.html dist & copy knowledge-base.json dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lordazzi/computadora.git"
+  },
+  "keywords": [
+    "computadora",
+    "ia",
+    "reconhecimento",
+    "de",
+    "voz",
+    "português",
+    "brasil",
+    "brazil",
+    "conversar",
+    "skynet",
+    "voice",
+    "recognize",
+    "example"
+  ],
+  "author": "Ricardo Azzi Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lordazzi/computadora/issues"
+  },
+  "homepage": "https://github.com/lordazzi/computadora#readme",
+  "devDependencies": {
+    "@types/jasmine": "2.5.53",
+    "@types/jasminewd2": "2.0.2",
+    "@types/webspeechapi": "0.0.27",
+    "awesome-typescript-loader": "3.2.3",
+    "codelyzer": "3.1.1",
+    "coveralls": "2.13.1",
+    "jasmine-core": "2.6.2",
+    "jasmine-spec-reporter": "4.1.0",
+    "karma": "1.7.0",
+    "karma-chrome-launcher": "2.1.1",
+    "karma-cli": "1.0.1",
+    "karma-coverage-istanbul-reporter": "1.2.1",
+    "karma-jasmine": "1.1.0",
+    "karma-jasmine-html-reporter": "0.2.2",
+    "karma-webpack": "2.0.4",
+    "protractor": "5.1.2",
+    "source-map-loader": "0.2.1",
+    "ts-node": "3.2.0",
+    "tslint": "5.3.2",
+    "typescript": "2.5.2",
+    "webpack": "3.6.0"
+  },
+  "dependencies": {
+    "rxjs": "5.4.3"
+  }
+}
